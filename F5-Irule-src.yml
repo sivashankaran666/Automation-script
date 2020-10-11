@@ -1,0 +1,14 @@
+---
+- name: irule-PoC
+  hosts: localhost
+  f5networks.f5_modules.bigip_pool:
+    tasks:
+      - f5networks.f5_modules.bigip_pool:
+          module: gtm
+          name: PoC-iRule
+          src: /tmp/irule.tcl
+          state: present
+          provider:
+            user: XXXXXXXXX
+            password: XXXXXXXXX
+            server: XXXXXXXXX
