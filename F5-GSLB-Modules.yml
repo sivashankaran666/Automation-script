@@ -1,0 +1,16 @@
+- name: Wide-ip-create-irules
+  hosts: localhost
+  connection: local
+  tasks:
+    - bigip_gtm_wide_ip:
+        name: test1.abc.com
+        pool_lb_method: round-robin
+        type: a
+        irules:
+            - irule-test
+        state: present
+        provider:
+          user: XXXXXX
+          password: XXXXXX
+          server: XXXXXXX
+          validate_certs: no
