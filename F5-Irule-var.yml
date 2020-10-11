@@ -1,0 +1,20 @@
+---
+-
+  name: Create new Irule
+  hosts: localhost
+  
+  tasks:
+    -
+      bigip_irule:
+        module: gtm
+        name: "{{ user_fqdn }}"
+        provider:
+          user: XXXXX
+          server: XXXXX
+          password: XXXXX
+          validate_certs: no
+        content: "{{lookup('template', 'irule.tc2')}}"
+  vars:
+
+    irules:
+      - irule.tc2
