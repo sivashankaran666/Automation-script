@@ -1,0 +1,29 @@
+---
+- hosts: all
+  remote_user: root
+
+  tasks:
+    - name: Check OS
+      shell: |
+       whoami
+       uptime
+       uname -a
+       lsb_release -a
+       df -h
+       cat /etc/fstab
+       cat /etc/resolv.conf
+       cat /etc/hosts
+       cat /etc/sysconfig/network
+       ifconfig -a
+       netstat -nr
+       netstat -ni
+       ps -ef
+       sanlun lun show all
+       multipath -ll
+       modinfo enic
+       ethtool -i eth0
+       dmesg |grep enic|grep ver
+      register: output
+    - debug:
+        msg: "{{ output.stdout_lines|list }}"
+      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
